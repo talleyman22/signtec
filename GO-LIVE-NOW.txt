@@ -1,0 +1,81 @@
+SIGNTEC — GO LIVE (Kevin — ~10 min)
+Last updated: July 20, 2026
+================================================================================
+
+CODE IS ON GITHUB (ready for Cloudflare Pages)
+  Repo:   https://github.com/talleyman22/signtec
+  Branch: main
+  Local:  D:\ninja jo artworks\repos\signtec\
+  Source: Clients/SignTec/Website\  (edit here, then copy/sync + push)
+
+
+GATE 1 — CLOUDFLARE PAGES (connect Git — same account as ninjajoartworks)
+--------------------------------------------------------------------------------
+  1. https://dash.cloudflare.com → Workers & Pages
+  2. Create application → Pages → Connect to Git
+  3. Select GitHub repo: talleyman22 / signtec
+     (Authorize Cloudflare if prompted — same as NJA)
+  4. Settings:
+       Project name:     signtec
+       Production branch: main
+       Build command:    (leave empty)
+       Build output:     /  (or leave empty — static root)
+  5. Save and Deploy
+  6. Wait for success → open https://signtec.pages.dev
+     (exact URL shown on the deployment page)
+
+  Upload fallback (if Git connect fails):
+    Zip ready: Clients/SignTec/Website/signtec-site.zip (~52 MB, portfolio photos)
+    Pages → Create → Upload assets → project name signtec → deploy zip
+
+
+GATE 2 — WEB3FORMS (form → scott@signtecs.net)
+--------------------------------------------------------------------------------
+  1. https://web3forms.com → Access Key for scott@signtecs.net
+  2. Paste into Clients/SignTec/Website/js/form-config.js
+       web3formsAccessKey: "YOUR_KEY"
+  3. Copy that file into repos/signtec/js/form-config.js
+  4. git commit + push → Pages redeploys
+  5. Submit a test request on live site → Scott’s inbox (check spam)
+
+
+GATE 3 — DNS signtecs.net (when Scott is ready for 2FA text)
+--------------------------------------------------------------------------------
+  Domain is at GoDaddy (Kevin has login; 2FA texts Scott).
+
+  After Pages is live on signtec.pages.dev:
+
+  A) Cloudflare custom domain (recommended — free SSL)
+     1. Pages project signtec → Custom domains → Add signtecs.net (+ www if used)
+     2. Cloudflare will show nameservers or CNAME records
+     3. GoDaddy: either switch nameservers to Cloudflare OR add CNAME/A records
+        Cloudflare shows for the custom domain
+     4. Scott approves GoDaddy 2FA text if required
+     5. Wait for SSL Active · test https://signtecs.net
+
+  B) Until DNS moves, the live site is https://signtec.pages.dev
+     (share that URL with Scott for review)
+
+
+REPEAT DEPLOYS (after go-live)
+--------------------------------------------------------------------------------
+  Edit Clients/SignTec/Website\
+  Copy changed files → repos/signtec\
+  cd repos/signtec
+  git add -A
+  git commit -m "Update site"
+  git push
+
+  Or: npm run deploy from Website/ once CLOUDFLARE_API_TOKEN is set
+  (see package.json — same pattern as ninjajoartworks)
+
+
+CHECKLIST
+--------------------------------------------------------------------------------
+  [x] Site built (static HTML/CSS/JS)
+  [x] GitHub repo talleyman22/signtec on main
+  [x] Deploy zip: Clients/SignTec/Website/signtec-site.zip
+  [ ] Cloudflare Pages project + first deploy → *.pages.dev
+  [ ] Web3Forms key wired + test email to Scott
+  [ ] Custom domain signtecs.net (GoDaddy + Scott 2FA)
+  [ ] Old WordPress host retired after stable

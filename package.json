@@ -3,6 +3,8 @@
   "private": true,
   "description": "SignTec Image Solutions static site",
   "scripts": {
-    "serve": "npx --yes serve -l 5173"
+    "serve": "npx --yes serve -l 5173",
+    "deploy": "npx --yes wrangler pages deploy . --project-name=signtec --branch=main",
+    "sync-repo": "powershell -NoProfile -Command \"Copy-Item -Path .\\* -Destination '..\\..\\repos\\signtec\\' -Recurse -Force -Exclude 'signtec-site.zip','node_modules','.git'\""
   }
 }
