@@ -762,6 +762,12 @@ main {
   color: var(--navy);
 }
 
+.confirm-box .confirm-lead {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin: 0 0 0.75rem;
+}
+
 .confirm-box p {
   margin: 0 0 0.75rem;
   color: var(--text-muted);

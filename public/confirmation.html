@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" href="assets/logo.jpg" type="image/png">
+  <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
 </head>
 <body>
   <header class="site-header">
@@ -29,15 +29,18 @@
   <main class="form-page">
     <div class="container">
       <div class="confirm-box">
-        <h1 id="title">Request received</h1>
-        <p id="intro">Thanks — your work request is on its way to the SignTec shop.</p>
+        <h1>Thank you</h1>
+        <p class="confirm-lead">
+          Your work request is on its way to the SignTec shop.
+        </p>
         <p id="detail" class="muted"></p>
         <p>
-          We’ll review the details and follow up at the email you provided.
+          We’ll review what you sent and follow up at the email you provided.
+          No need to call — email is the best way for us to get back to you with next steps.
         </p>
         <div class="form-actions" style="margin-top:1.5rem">
           <a class="btn btn-navy" href="index.html">Back to home</a>
-          <a class="btn btn-outline" href="request.html">Submit another</a>
+          <a class="btn btn-outline" href="portfolio.html">See our work</a>
         </div>
       </div>
     </div>
@@ -53,13 +56,6 @@
   </footer>
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
-    const params = new URLSearchParams(location.search);
-    const preview = params.get("preview") === "1";
-    if (preview) {
-      document.getElementById("title").textContent = "Preview confirmation";
-      document.getElementById("intro").textContent =
-        "Form validated locally. Web3Forms access key is not set yet — no email was sent.";
-    }
     try {
       const raw = sessionStorage.getItem("signtec_last_request");
       if (raw) {
@@ -67,9 +63,9 @@
         const bits = [];
         if (data.project_type) bits.push(data.project_type);
         if (data.business) bits.push(data.business);
-        if (data.submittedAt) bits.push(new Date(data.submittedAt).toLocaleString());
         if (bits.length) {
-          document.getElementById("detail").textContent = bits.join(" · ");
+          document.getElementById("detail").textContent =
+            "Summary: " + bits.join(" · ");
         }
       }
     } catch (_) { /* ignore */ }

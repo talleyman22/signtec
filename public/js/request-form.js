@@ -153,20 +153,20 @@ form?.addEventListener("submit", async (e) => {
   const payload = buildPayload();
 
   if (!key) {
-    // Local / pre-key preview: store and show confirmation page
+    // No key configured — still show client-facing thank-you (no email sent).
     try {
       sessionStorage.setItem(
         "signtec_last_request",
         JSON.stringify({
-          ...payload,
+          project_type: payload.project_type,
+          business: payload.business,
           submittedAt: new Date().toISOString(),
-          previewOnly: true,
         })
       );
     } catch (_) {
       /* ignore */
     }
-    window.location.href = "confirmation.html?preview=1";
+    window.location.href = "confirmation.html";
     return;
   }
 
