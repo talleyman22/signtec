@@ -659,6 +659,23 @@ main {
   color: #b45309;
 }
 
+.field .optional {
+  font-weight: 500;
+  color: var(--text-muted);
+  font-size: 0.85em;
+}
+
+.field-hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.field[hidden] {
+  display: none !important;
+}
+
 .field input,
 .field select,
 .field textarea {

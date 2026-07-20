@@ -1,6 +1,9 @@
 const form = document.getElementById("work-request-form");
 const statusEl = document.getElementById("form-status");
 const submitBtn = document.getElementById("submit-btn");
+const brandAssetsSelect = document.getElementById("brand_assets");
+const brandAssetsLinkField = document.getElementById("brand-assets-link-field");
+const brandAssetsLink = document.getElementById("brand_assets_link");
 
 function showStatus(kind, message) {
   if (!statusEl) return;
@@ -17,6 +20,21 @@ function markInvalid(id) {
   if (!input) return;
   const field = input.closest(".field");
   if (field) field.classList.add("invalid");
+}
+
+function brandAssetsNeedLink() {
+  const v = brandAssetsSelect?.value;
+  return v === "yes" || v === "partial";
+}
+
+function syncBrandAssetsLinkField() {
+  if (!brandAssetsLinkField || !brandAssetsLink) return;
+  const show = brandAssetsNeedLink();
+  brandAssetsLinkField.hidden = !show;
+  if (!show) {
+    brandAssetsLink.value = "";
+    brandAssetsLinkField.classList.remove("invalid");
+  }
 }
 
 function validate() {
@@ -43,7 +61,33 @@ function validate() {
     markInvalid("email");
     ok = false;
   }
+  // Referral is optional — never required.
+  // Brand asset link required only when they say yes/partial.
+  if (brandAssetsNeedLink()) {
+    const link = (brandAssetsLink?.value || "").trim();
+    if (!link) {
+      markInvalid("brand_assets_link");
+      ok = false;
+    } else {
+      try {
+        const u = new URL(link);
+        if (u.protocol !== "http:" && u.protocol !== "https:") {
+          markInvalid("brand_assets_link");
+          ok = false;
+        }
+      } catch {
+        markInvalid("brand_assets_link");
+        ok = false;
+      }
+    }
+  }
   return ok;
+}
+
+function brandAssetsLabel() {
+  const el = brandAssetsSelect;
+  if (!el) return "";
+  return el.options[el.selectedIndex]?.text || el.value;
 }
 
 function buildPayload() {
@@ -51,6 +95,9 @@ function buildPayload() {
   const projectType = document.getElementById("project_type");
   const projectLabel = projectType.options[projectType.selectedIndex]?.text || projectType.value;
   const business = document.getElementById("business").value.trim();
+  const assetsLink = brandAssetsNeedLink()
+    ? (brandAssetsLink?.value || "").trim()
+    : "";
 
   const data = {
     access_key: cfg.web3formsAccessKey || "",
@@ -64,15 +111,18 @@ function buildPayload() {
     project_type: projectLabel,
     location: document.getElementById("location").value.trim(),
     size_details: document.getElementById("size_details").value.trim(),
-    brand_assets: document.getElementById("brand_assets").value,
-    brand_notes: document.getElementById("brand_notes").value.trim(),
+    brand_assets: brandAssetsLabel(),
+    brand_assets_link: assetsLink || "(none)",
     timeline: document.getElementById("timeline").value.trim(),
     description: document.getElementById("description").value.trim(),
-    referral: document.getElementById("referral").value.trim(),
+    referral: document.getElementById("referral").value.trim() || "(not provided)",
     botcheck: form.querySelector('[name="botcheck"]')?.checked ? "1" : "",
   };
   return data;
 }
+
+brandAssetsSelect?.addEventListener("change", syncBrandAssetsLinkField);
+syncBrandAssetsLinkField();
 
 form?.addEventListener("submit", async (e) => {
   e.preventDefault();

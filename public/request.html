@@ -96,7 +96,7 @@
               <label for="size_details">Size, quantity, or vehicle type</label>
               <input type="text" id="size_details" name="size_details" placeholder="e.g. 4×8 building face, two box trucks">
             </div>
-            <div class="field">
+            <div class="field full">
               <label for="brand_assets">Existing brand assets on hand?</label>
               <select id="brand_assets" name="brand_assets">
                 <option value="not_sure">Not sure</option>
@@ -105,16 +105,17 @@
                 <option value="no">No — need design from scratch</option>
               </select>
             </div>
-            <div class="field">
-              <label for="brand_notes">Asset notes</label>
-              <input type="text" id="brand_notes" name="brand_notes" placeholder="File types, brand guidelines, etc.">
+            <div class="field full" id="brand-assets-link-field" hidden>
+              <label for="brand_assets_link">Link to brand assets</label>
+              <input type="url" id="brand_assets_link" name="brand_assets_link" inputmode="url" autocomplete="off" placeholder="https://drive.google.com/… or Dropbox share link">
+              <p class="field-hint">Share a Google Drive or Dropbox folder/file link (set to “anyone with the link can view”).</p>
             </div>
             <div class="field full">
               <label for="description">Project description <span class="req">*</span></label>
               <textarea id="description" name="description" required placeholder="What do you need built or designed? Any must-haves or constraints?"></textarea>
             </div>
             <div class="field full">
-              <label for="referral">How did you hear about SignTec?</label>
+              <label for="referral">How did you hear about SignTec? <span class="optional">(optional)</span></label>
               <input type="text" id="referral" name="referral">
             </div>
           </div>
