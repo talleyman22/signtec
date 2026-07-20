@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request received — SignTec Image Solutions</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/logo.jpg" type="image/png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.jpg" alt="SignTec Image Solutions">
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-cta" href="request.html">Work Request</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="form-page">
+    <div class="container">
+      <div class="confirm-box">
+        <h1 id="title">Request received</h1>
+        <p id="intro">Thanks — your work request is on its way to the SignTec shop.</p>
+        <p id="detail" class="muted"></p>
+        <p>
+          We’ll review the details and follow up at the email you provided.
+        </p>
+        <div class="form-actions" style="margin-top:1.5rem">
+          <a class="btn btn-navy" href="index.html">Back to home</a>
+          <a class="btn btn-outline" href="request.html">Submit another</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="margin-top:0;border:0;padding-top:0">
+        <span>&copy; <span id="y"></span> SignTec Image Solutions</span>
+        <span>3204 Division St, Ste B · Burlington, IA 52601</span>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    const params = new URLSearchParams(location.search);
+    const preview = params.get("preview") === "1";
+    if (preview) {
+      document.getElementById("title").textContent = "Preview confirmation";
+      document.getElementById("intro").textContent =
+        "Form validated locally. Web3Forms access key is not set yet — no email was sent.";
+    }
+    try {
+      const raw = sessionStorage.getItem("signtec_last_request");
+      if (raw) {
+        const data = JSON.parse(raw);
+        const bits = [];
+        if (data.project_type) bits.push(data.project_type);
+        if (data.business) bits.push(data.business);
+        if (data.submittedAt) bits.push(new Date(data.submittedAt).toLocaleString());
+        if (bits.length) {
+          document.getElementById("detail").textContent = bits.join(" · ");
+        }
+      }
+    } catch (_) { /* ignore */ }
+  </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+SIGNTEC WEBSITE — DEPLOY & FORM SETUP
+Domain: signtecs.net (GoDaddy — Kevin login; 2FA text → Scott at DNS change)
+Local site: Clients/SignTec/Website/
+================================================================================
+
+
+WHAT THIS IS
+--------------------------------------------------------------------------------
+Static HTML/CSS/JS site (no WordPress). NJA is webmaster — edit here, redeploy.
+Theme: navy + gold chrome; logo mark unchanged (white + cyan-blue).
+
+
+LOCAL PREVIEW
+--------------------------------------------------------------------------------
+  cd "D:\ninja jo artworks\Clients\SignTec\Website"
+  npx --yes serve -l 5173
+  Open http://localhost:5173
+
+  Work request without Web3Forms key: validates and opens confirmation.html?preview=1
+  (no email sent).
+
+
+WEB3FORMS → scott@signtecs.net
+--------------------------------------------------------------------------------
+  1. https://web3forms.com — create free key for scott@signtecs.net
+  2. Open js/form-config.js
+  3. Paste key into web3formsAccessKey: "YOUR_KEY_HERE"
+  4. Redeploy
+  5. Submit a test request → confirm email arrives (check spam)
+
+  notifyEmail in form-config is documentation only; Web3Forms routes by the key’s
+  registered address — key must be created for scott@signtecs.net.
+
+
+HOSTING (recommended: Cloudflare Pages)
+--------------------------------------------------------------------------------
+  Same pattern as ninjajoartworks.com:
+
+  A) Dashboard upload
+     Cloudflare → Workers & Pages → Create → Pages → Upload assets
+     Upload entire Website/ folder contents (index.html at root of upload)
+     Project name e.g. signtec
+
+  B) Git (later)
+     Private repo · push Website/ as site root · connect Pages · branch main
+     Build command: (empty) · Output directory: /
+
+  Preview URL: something.pages.dev — send to Scott for Phase 2 review.
+
+
+DNS CUTOVER (Phase 3 — not yet)
+--------------------------------------------------------------------------------
+  1. Site live on Pages (or other host) with HTTPS working on preview
+  2. Kevin: GoDaddy DNS for signtecs.net → point to Cloudflare / host docs
+  3. Scott: approve 2FA text
+  4. Wait for propagation · test https://signtecs.net
+  5. Retire old WordPress host when stable
+
+  Do not store GoDaddy passwords in this folder.
+
+
+CHECKLIST
+--------------------------------------------------------------------------------
+  [x] Phase 1 static pages + form UI
+  [ ] Web3Forms key for scott@signtecs.net in form-config.js
+  [ ] Preview host live (Pages)
+  [ ] Scott review (Phase 2)
+  [ ] DNS cutover (Phase 3)

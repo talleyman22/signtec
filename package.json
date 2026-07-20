@@ -1,0 +1,8 @@
+{
+  "name": "signtec-website",
+  "private": true,
+  "description": "SignTec Image Solutions static site",
+  "scripts": {
+    "serve": "npx --yes serve -l 5173"
+  }
+}

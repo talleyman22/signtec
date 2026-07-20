@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work Request — SignTec Image Solutions</title>
+  <meta name="description" content="Request commercial signage or brand graphics from SignTec Image Solutions in Burlington, Iowa.">
+  <link rel="canonical" href="https://signtecs.net/request.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/logo.jpg" type="image/png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.jpg" alt="SignTec Image Solutions">
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Work</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-cta active" href="request.html">Work Request</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Work request</h1>
+      <p>Tell us about your project. This form goes straight to the shop as a work request — not a formal quote.</p>
+    </div>
+  </section>
+
+  <main class="form-page">
+    <div class="container">
+      <p class="form-intro">
+        Fill in the details below so we have everything up front — who you are, the kind of work you need,
+        where it goes, and when you need it. We’ll review your request and follow up by email.
+      </p>
+
+      <form id="work-request-form" novalidate>
+        <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <section class="form-section">
+          <h2>Contact</h2>
+          <p class="hint">How we reach you and who the work is for.</p>
+          <div class="field-grid">
+            <div class="field">
+              <label for="name">Your name <span class="req">*</span></label>
+              <input type="text" id="name" name="name" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="business">Business / organization <span class="req">*</span></label>
+              <input type="text" id="business" name="business" required autocomplete="organization">
+            </div>
+            <div class="field">
+              <label for="phone">Phone <span class="req">*</span></label>
+              <input type="tel" id="phone" name="phone" required autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2>Project</h2>
+          <p class="hint">Describe the work you need for your business or organization.</p>
+          <div class="field-grid">
+            <div class="field full">
+              <label for="project_type">Project type <span class="req">*</span></label>
+              <select id="project_type" name="project_type" required>
+                <option value="">Select…</option>
+                <option value="outdoor_signage">Commercial outdoor / building signage</option>
+                <option value="vehicle_fleet">Vehicle or fleet graphics</option>
+                <option value="logo_brand">Business logo / brand graphics</option>
+                <option value="interior_display">Interior / display graphics (commercial)</option>
+                <option value="other_commercial">Other commercial project</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="location">Install / project location</label>
+              <input type="text" id="location" name="location" placeholder="City or site address">
+            </div>
+            <div class="field">
+              <label for="timeline">Timeline / needed by <span class="req">*</span></label>
+              <input type="text" id="timeline" name="timeline" required placeholder="Date or “flexible”">
+            </div>
+            <div class="field full">
+              <label for="size_details">Size, quantity, or vehicle type</label>
+              <input type="text" id="size_details" name="size_details" placeholder="e.g. 4×8 building face, two box trucks">
+            </div>
+            <div class="field">
+              <label for="brand_assets">Existing brand assets on hand?</label>
+              <select id="brand_assets" name="brand_assets">
+                <option value="not_sure">Not sure</option>
+                <option value="yes">Yes — vector / print-ready files</option>
+                <option value="partial">Partial — logos need cleanup</option>
+                <option value="no">No — need design from scratch</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="brand_notes">Asset notes</label>
+              <input type="text" id="brand_notes" name="brand_notes" placeholder="File types, brand guidelines, etc.">
+            </div>
+            <div class="field full">
+              <label for="description">Project description <span class="req">*</span></label>
+              <textarea id="description" name="description" required placeholder="What do you need built or designed? Any must-haves or constraints?"></textarea>
+            </div>
+            <div class="field full">
+              <label for="referral">How did you hear about SignTec?</label>
+              <input type="text" id="referral" name="referral">
+            </div>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-navy" id="submit-btn">Submit request</button>
+        </div>
+        <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <p>SignTec Image Solutions — commercial signage and brand graphics in Burlington, Iowa.</p>
+        </div>
+        <div class="footer-meta">
+          <p>3204 Division St, Ste B · Burlington, IA 52601</p>
+          <p><a href="tel:+13192081096">(319) 208-1096</a> · <a href="mailto:scott@signtecs.net">scott@signtecs.net</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="y"></span> SignTec Image Solutions</span>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  <script src="js/form-config.js"></script>
+  <script src="js/request-form.js"></script>
+</body>
+</html>
