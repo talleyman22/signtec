@@ -84,9 +84,19 @@ function validate() {
   return ok;
 }
 
+function selectLabel(id) {
+  const el = document.getElementById(id);
+  if (!el || el.tagName !== "SELECT") return el?.value || "";
+  return el.options[el.selectedIndex]?.text || el.value;
+}
+
 function brandAssetsLabel() {
-  const el = brandAssetsSelect;
-  if (!el) return "";
+  return selectLabel("brand_assets");
+}
+
+function budgetScopeLabel() {
+  const el = document.getElementById("budget_scope");
+  if (!el || !el.value) return "(not provided)";
   return el.options[el.selectedIndex]?.text || el.value;
 }
 
@@ -111,6 +121,7 @@ function buildPayload() {
     project_type: projectLabel,
     location: document.getElementById("location").value.trim(),
     size_details: document.getElementById("size_details").value.trim(),
+    budget_scope: budgetScopeLabel(),
     brand_assets: brandAssetsLabel(),
     brand_assets_link: assetsLink || "(none)",
     timeline: document.getElementById("timeline").value.trim(),

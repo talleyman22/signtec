@@ -97,6 +97,19 @@
               <input type="text" id="size_details" name="size_details" placeholder="e.g. 4×8 building face, two box trucks">
             </div>
             <div class="field full">
+              <label for="budget_scope">Budget scope <span class="optional">(optional)</span></label>
+              <select id="budget_scope" name="budget_scope">
+                <option value="">Prefer not to say / not sure yet</option>
+                <option value="under_1k">Under $1,000</option>
+                <option value="1k_5k">$1,000 – $5,000</option>
+                <option value="5k_15k">$5,000 – $15,000</option>
+                <option value="15k_50k">$15,000 – $50,000</option>
+                <option value="50k_plus">$50,000+</option>
+                <option value="discuss">Prefer to discuss with the shop</option>
+              </select>
+              <p class="field-hint">Helps us size the conversation — not a quote or commitment.</p>
+            </div>
+            <div class="field full">
               <label for="brand_assets">Existing brand assets on hand?</label>
               <select id="brand_assets" name="brand_assets">
                 <option value="not_sure">Not sure</option>
